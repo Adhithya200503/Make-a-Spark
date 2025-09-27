@@ -64,7 +64,7 @@ const OrderForm = ({ webhookUrl }) => {
         <form onSubmit={handleSubmit} className="bg-[#181523] space-y-4">
           <div>
             <label className="label">
-              <span className="label-text text-white">Name</span>
+              <span className="label-text text-white dark:text-white">Name</span>
             </label>
             <input
               type="text"
@@ -72,12 +72,12 @@ const OrderForm = ({ webhookUrl }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="input input-bordered w-full text-black"
+              className="input input-bordered w-full text-black dark:text-white"
             />
           </div>
           <div>
             <label className="label">
-              <span className="label-text text-white">Email</span>
+              <span className="label-text text-white dark:text-white">Email</span>
             </label>
             <input
               type="email"
@@ -85,12 +85,12 @@ const OrderForm = ({ webhookUrl }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="input input-bordered w-full text-black"
+              className="input input-bordered w-full text-black dark:text-white"
             />
           </div>
           <div>
             <label className="label">
-              <span className="label-text text-white">Phone Number</span>
+              <span className="label-text text-white dark:text-white">Phone Number</span>
             </label>
             <input
               type="tel"
@@ -98,7 +98,7 @@ const OrderForm = ({ webhookUrl }) => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
-              className="input input-bordered w-full text-black"
+              className="input input-bordered w-full text-black dark:text-white"
             />
           </div>
 

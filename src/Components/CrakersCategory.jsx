@@ -38,7 +38,7 @@ const CrakersCategory = () => {
         {crackersCategory.map((item, idx) => (
           <div
             key={idx}
-            className="card bg-yellow-500  shadow-lg rounded-none  p-4 flex items-center justify-center text-center hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer"
+            className="card bg-yellow-500  shadow-lg rounded-sm  p-4 flex items-center justify-center text-center hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer"
         onClick={()=>{navigate(`/${item}`)}}>
             <p className="text-lg font-semibold text-black  ">
               {formatName(item)}
