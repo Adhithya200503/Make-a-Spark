@@ -7,6 +7,7 @@ const OrderForm = ({ webhookUrl }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [location, setLocation] = useState(""); // fixed typo
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -21,6 +22,7 @@ const OrderForm = ({ webhookUrl }) => {
       customerName: name,
       customerEmail: email,
       customerPhone: phone,
+      customerLocation: location,
       cartItems: cart.map((item) => ({
         variety: item.variety,
         quantity: item.quantity,
@@ -32,19 +34,17 @@ const OrderForm = ({ webhookUrl }) => {
     try {
       const response = await fetch(webhookUrl, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderDetails),
       });
 
       if (response.ok) {
-        alert("Order submitted successfully!");
-        clearCart(); // Clear the cart after a successful submission
+        alert("Order submitted successfully! Check your email for details.");
+        clearCart();
         setName("");
         setEmail("");
         setPhone("");
-        alert("Your has been placed , check details about the order in gmail");
+        setLocation("");
         navigate("/");
       } else {
         alert("Failed to submit order. Please try again.");
@@ -57,15 +57,14 @@ const OrderForm = ({ webhookUrl }) => {
 
   return (
     <div className="p-4 min-h-screen bg-[#181523] text-white flex justify-center items-start">
-      <div className="card  max-w-2xl w-full p-6 rounded-lg shadow-lg bg-[#181523] ">
+      <div className="card max-w-2xl w-full p-6 rounded-lg shadow-lg bg-[#181523]">
         <h2 className="text-3xl font-bold text-center mb-6">
           Place Your Order
         </h2>
-        <form onSubmit={handleSubmit} className="bg-[#181523] space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
+        
           <div>
-            <label className="label">
-              <span className="label-text text-white dark:text-white">Name</span>
-            </label>
+            <label className="label text-white">Name</label>
             <input
               type="text"
               placeholder="Your Name"
@@ -75,10 +74,10 @@ const OrderForm = ({ webhookUrl }) => {
               className="input input-bordered w-full text-black dark:text-white"
             />
           </div>
+
+   
           <div>
-            <label className="label">
-              <span className="label-text text-white dark:text-white">Email</span>
-            </label>
+            <label className="label text-white">Email</label>
             <input
               type="email"
               placeholder="Your Email"
@@ -88,10 +87,10 @@ const OrderForm = ({ webhookUrl }) => {
               className="input input-bordered w-full text-black dark:text-white"
             />
           </div>
+
+     
           <div>
-            <label className="label">
-              <span className="label-text text-white dark:text-white">Phone Number</span>
-            </label>
+            <label className="label text-white">Phone Number</label>
             <input
               type="tel"
               placeholder="Your Phone Number"
@@ -102,6 +101,20 @@ const OrderForm = ({ webhookUrl }) => {
             />
           </div>
 
+         
+          <div>
+            <label className="label text-white">Location</label>
+            <input
+              type="text"
+              placeholder="Your Location"
+              value={location} 
+              onChange={(e) => setLocation(e.target.value)}
+              required
+              className="input input-bordered w-full text-black dark:text-white"
+            />
+          </div>
+
+      
           <div className="mt-6">
             <h3 className="text-xl font-bold mb-2">Your Cart Summary</h3>
             <div className="max-h-60 overflow-y-auto border border-gray-600 rounded-md p-4 bg-[#181523]">
@@ -125,12 +138,18 @@ const OrderForm = ({ webhookUrl }) => {
             </div>
           </div>
 
+          {/* Total Cost */}
           <div className="mt-4 text-right font-bold text-2xl">
             Total: ₹{getTotalCost().toFixed(2)}
           </div>
 
+          {/* Submit Button */}
           <div className="mt-6">
-            <button type="submit" className="btn btn-primary w-full">
+            <button
+              type="submit"
+              className="btn btn-primary w-full"
+              disabled={cart.length === 0} // disable if cart is empty
+            >
               Submit Order
             </button>
           </div>

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useCart } from "../context/CartContext";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaHome, FaShoppingCart } from "react-icons/fa";
+import { IoAddOutline } from "react-icons/io5";
+
+
 const firecrackerData = {
   sparklers: [
     {
@@ -1470,15 +1473,19 @@ const CrakersList = () => {
   const { crackersCategory } = useParams();
   const [crackersList, setCrackersList] = useState([]);
   const [quantities, setQuantities] = useState({});
+  const [sortedList, setSortedList] = useState([]);
+  const [sortOrder, setSortOrder] = useState(""); // "asc" or "desc"
   const { addToCart } = useCart();
 
   useEffect(() => {
     if (crackersCategory && firecrackerData[crackersCategory]) {
       setCrackersList(firecrackerData[crackersCategory]);
+      setSortedList(firecrackerData[crackersCategory]); // initialize sorted list
     } else {
       setCrackersList([]);
+      setSortedList([]);
     }
-  }, [crackersCategory]); // ⚠️ Note: Removed the setQuantities({}); here
+  }, [crackersCategory]);
 
   const handleQuantityChange = (variety, value) => {
     const quantity = parseInt(value, 10) || 0;
@@ -1492,17 +1499,27 @@ const CrakersList = () => {
     const quantity = quantities[item.variety] || 0;
     if (quantity > 0) {
       addToCart(item, quantity);
-
-      // Reset the specific input field to 0 after adding to cart
       setQuantities((prevQuantities) => ({
         ...prevQuantities,
         [item.variety]: 0,
       }));
-
       alert(`Added ${quantity} of ${item.variety} to the cart`);
     } else {
       alert("Please enter a quantity greater than 0.");
     }
+  };
+
+  const handleSortChange = (e) => {
+    const order = e.target.value;
+    setSortOrder(order);
+
+    const sorted = [...crackersList].sort((a, b) => {
+      if (order === "asc") return a.rate_per_unit - b.rate_per_unit;
+      if (order === "desc") return b.rate_per_unit - a.rate_per_unit;
+      return 0;
+    });
+
+    setSortedList(sorted);
   };
 
   const categoryName = crackersCategory
@@ -1514,18 +1531,39 @@ const CrakersList = () => {
       <h1 className="text-3xl font-bold text-center mb-8">
         Firecracker Price List 🎆
       </h1>
-      <button
-        onClick={() => navigate("/cart")}
-        className="absolute right-25 top-15  sm:top-5 bg-yellow-500 text-black p-2 px-4 rounded-2xl flex items-center gap-4 cursor-pointer"
-      >
-        <FaShoppingCart />
-        Cart
-      </button>
 
-      <div className="card bg-[#181523] max-w-4xl mx-auto mt-15">
+      {/* Cart Button */}
+
+      {/* Sort Selector */}
+      <div className="max-w-4xl mx-auto mb-4 flex justify-end gap-3">
+        <button
+          onClick={() => navigate("/")}
+          className=" bg-yellow-500 text-black p-2 px-4 rounded-sm flex items-center gap-2 cursor-pointer"
+        >
+          <FaHome />
+        </button>
+        <button
+          onClick={() => navigate("/cart")}
+          className=" bg-yellow-500 text-black p-2 px-4 rounded-sm flex items-center gap-2 cursor-pointer"
+        >
+          <FaShoppingCart />
+          Cart
+        </button>
+        <select
+          value={sortOrder}
+          onChange={handleSortChange}
+          className="input input-bordered bg-white text-black w-48"
+        >
+          <option value="">Sort by Price</option>
+          <option value="asc">Low to High</option>
+          <option value="desc">High to Low</option>
+        </select>
+      </div>
+
+      <div className="card bg-[#181523] max-w-4xl mx-auto mt-2">
         <div className="card-body">
           <h2 className="card-title text-white">{categoryName}</h2>
-          {crackersList.length > 0 ? (
+          {sortedList.length > 0 ? (
             <div className="overflow-x-auto mt-4">
               <table className="table w-full table-compact">
                 <thead>
@@ -1538,7 +1576,7 @@ const CrakersList = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {crackersList.map((item, itemIndex) => (
+                  {sortedList.map((item, itemIndex) => (
                     <tr key={itemIndex}>
                       <td className="font-semibold">{item.variety}</td>
                       <td>{item.contents}</td>
@@ -1551,16 +1589,20 @@ const CrakersList = () => {
                           onChange={(e) =>
                             handleQuantityChange(item.variety, e.target.value)
                           }
-                          className="input input-bordered w-20 bg-white  text-black"
+                          className="input input-bordered w-20 bg-white text-black"
                         />
                       </td>
                       <td>
                         <button
-                          className="btn btn-sm btn-primary"
+                          className="btn btn-sm btn-primary hidden sm:block"
                           onClick={() => handleAddToCart(item)}
                         >
                           Add to Cart
                         </button>
+                        <IoAddOutline
+                          className="sm:hidden cursor-pointer"
+                          onClick={() => handleAddToCart(item)}
+                        />
                       </td>
                     </tr>
                   ))}
