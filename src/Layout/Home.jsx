@@ -2,7 +2,12 @@ import React from "react";
 import { Outlet } from "react-router";
 import Banner from "../assets/Banner.png";
 import Logo from "../assets/Logo.png";
-import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaInstagram,
+  FaWhatsapp,
+} from "react-icons/fa";
 const Home = () => {
   return (
     <div>
@@ -25,14 +30,14 @@ const Home = () => {
                   className="flex items-center space-x-1 text-sm md:text-base font-semibold"
                 >
                   <FaPhoneAlt />
-                  <span>9818806699</span>
+                  <span>+91 93609 95061</span>
                 </a>
                 <a
                   href="mailto:createsparkms@gmail.com"
                   className="flex items-center space-x-1 text-sm md:text-base font-semibold"
                 >
                   <FaEnvelope />
-                  <span>createsparkms@gmail.com</span>
+                  <span>makeaspark1117@gmail.com</span>
                 </a>
               </div>
             </div>
@@ -40,7 +45,20 @@ const Home = () => {
         </div>
       </header>
       <Outlet />
-      <footer>fkjfwkj</footer>
+      <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content items-center p-4">
+        <aside className="grid-flow-col items-center">
+          <img src={Logo} className="w-10 h-10" />
+          <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
+        </aside>
+        <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+          <a>
+            <FaWhatsapp className="w-8 h-8" />
+          </a>
+          <a>
+            <FaInstagram className="w-8 h-8" />
+          </a>
+        </nav>
+      </footer>
     </div>
   );
 };
