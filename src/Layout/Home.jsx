@@ -11,7 +11,8 @@ import {
 const Home = () => {
   return (
     <div>
-      <header className="w-full flex justify-center">
+      <header className="w-full relative">
+        {/* Banner + Content */}
         <div className="relative w-full h-[200px] sm:h-[250px] md:h-[300px] overflow-hidden">
           <img
             src={Banner}
@@ -32,14 +33,12 @@ const Home = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6  rounded-lg px-4 py-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 rounded-lg px-4 py-2">
               <a
-                href="tel:9818806699"
+                href="https://wa.me/919360995061"
                 className="flex items-center gap-1 text-sm md:text-base font-semibold"
               >
-                <a href="https://wa.me/919360995061">
-                  <FaWhatsapp className="w-8 h-8 animate-bounce" />
-                </a>
+                <FaWhatsapp className="w-8 h-8 animate-bounce" />
                 <span>+91 93609 95061</span>
               </a>
               <a

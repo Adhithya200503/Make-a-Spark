@@ -1,2 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+#google_translate_element,
+.goog-te-banner-frame,
+.goog-te-gadget {
+  display: none !important;
+}
