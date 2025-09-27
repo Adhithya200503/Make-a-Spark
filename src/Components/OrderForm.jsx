@@ -18,6 +18,20 @@ const OrderForm = ({ webhookUrl }) => {
       return;
     }
 
+    // --- Email validation ---
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    // --- Phone number validation (10 digits for India) ---
+    const phoneRegex = /^[6-9]\d{9}$/;
+    if (!phoneRegex.test(phone)) {
+      alert("Please enter a valid 10-digit phone number starting with 6-9.");
+      return;
+    }
+
     const orderDetails = {
       customerName: name,
       customerEmail: email,
@@ -58,11 +72,10 @@ const OrderForm = ({ webhookUrl }) => {
   return (
     <div className="p-4 min-h-screen bg-[#181523] text-white flex justify-center items-start">
       <div className="card max-w-2xl w-full p-6 rounded-lg shadow-lg bg-[#181523]">
-        <h2 className="text-3xl font-bold text-center mb-6">
+        <h2 className="text-3xl font-bold text-center mb-6 text-[#C29740] ">
           Place Your Order
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-        
           <div>
             <label className="label text-white">Name</label>
             <input
@@ -75,7 +88,6 @@ const OrderForm = ({ webhookUrl }) => {
             />
           </div>
 
-   
           <div>
             <label className="label text-white">Email</label>
             <input
@@ -88,7 +100,6 @@ const OrderForm = ({ webhookUrl }) => {
             />
           </div>
 
-     
           <div>
             <label className="label text-white">Phone Number</label>
             <input
@@ -101,20 +112,18 @@ const OrderForm = ({ webhookUrl }) => {
             />
           </div>
 
-         
           <div>
             <label className="label text-white">Location</label>
             <input
               type="text"
               placeholder="Your Location"
-              value={location} 
+              value={location}
               onChange={(e) => setLocation(e.target.value)}
               required
               className="input input-bordered w-full text-black dark:text-white"
             />
           </div>
 
-      
           <div className="mt-6">
             <h3 className="text-xl font-bold mb-2">Your Cart Summary</h3>
             <div className="max-h-60 overflow-y-auto border border-gray-600 rounded-md p-4 bg-[#181523]">

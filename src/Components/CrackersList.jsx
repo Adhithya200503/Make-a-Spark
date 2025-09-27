@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { useCart } from "../context/CartContext";
 import { FaHome, FaShoppingCart } from "react-icons/fa";
 import { IoAddOutline } from "react-icons/io5";
-
+import { CiShoppingCart } from "react-icons/ci";
 
 const firecrackerData = {
   sparklers: [
@@ -1527,9 +1527,9 @@ const CrakersList = () => {
     : "No Category Selected";
 
   return (
-    <div className="p-4 min-h-screen bg-[#181523] text-white relative">
-      <h1 className="text-3xl font-bold text-center mb-8">
-        Firecracker Price List 🎆
+    <div className="p-4 min-h-screen bg-[#181523] relative text-white">
+      <h1 className="text-3xl font-bold text-center mb-8 text-[#C29740]">
+        Firecracker Price List 
       </h1>
 
       {/* Cart Button */}
@@ -1599,10 +1599,12 @@ const CrakersList = () => {
                         >
                           Add to Cart
                         </button>
-                        <IoAddOutline
-                          className="sm:hidden cursor-pointer"
+                        <button
+                          className=" bg-yellow-500 text-black p-2 px-4 rounded-sm flex items-center gap-2 sm:hidden cursor-pointer"
                           onClick={() => handleAddToCart(item)}
-                        />
+                        >
+                          <CiShoppingCart />
+                        </button>
                       </td>
                     </tr>
                   ))}

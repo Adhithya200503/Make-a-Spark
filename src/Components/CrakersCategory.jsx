@@ -118,8 +118,7 @@ const CrakersCategory = () => {
   return (
     <div className="px-4 py-6 bg-[#181523]">
       <h2 className="text-2xl font-bold  mb-6 flex gap-3">
-        <span className="text-white">Crackers Categories</span>
-        <span>({crackersCategory.length})</span>
+        <span className="text-[#C29740]">Crackers Categories</span>
       </h2>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {crackersCategory.map((item, idx) => (
