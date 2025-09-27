@@ -6,7 +6,7 @@ import twinkling from "../assets/TwinklingStar.jpg";
 import sparkles from "../assets/sparkles.jpg";
 import SingleShot from "../assets/SingleShot.jpg"
 import chorsa from "../assets/chorsa.jpg"
-import booms from "../assets/booms.jpg"
+import booms from "../assets/Booms.jpg"
 import fountain from "../assets/fountains.jpg"
 import rockets from "../assets/Rockets.jpg"
 import aerial from "../assets/aerial_shots.jpg";
