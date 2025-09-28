@@ -391,7 +391,7 @@ const firecrackerData = {
       amount: 46.0,
     },
     {
-      variety: "BIJILI CRACKERS RED",
+      variety: "BIJILI CRACKERS RED MINI",
       contents: "50 / BAG",
       rate_per_unit: 26.0,
       quantity: "1 BAG",
@@ -1461,4 +1461,4 @@ const firecrackerData = {
   ],
 };
 
-export default firecrackerData
+export default firecrackerData;
