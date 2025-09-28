@@ -3,6 +3,7 @@ import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router";
 import { BsCart3 } from "react-icons/bs";
 import { FaHome } from "react-icons/fa";
+import { IoArrowBackSharp } from "react-icons/io5";
 
 const CartPage = () => {
   const { cart, updateQuantity, clearCart, getTotalCost } = useCart();
@@ -15,6 +16,12 @@ const CartPage = () => {
         <BsCart3  className="text-[#C29740] "/>
       </div>
       <div className="max-w-4xl mx-auto mb-4 flex justify-end gap-3">
+        <button
+          onClick={() => navigate(-1)}
+          className=" bg-yellow-500 text-black p-2 px-4 rounded-sm flex items-center gap-2 cursor-pointer"
+        >
+          <IoArrowBackSharp />
+        </button>
         <button
           onClick={() => navigate("/")}
           className=" bg-yellow-500 text-black p-2 px-4 rounded-sm flex items-center gap-2 cursor-pointer"

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router";
+import { IoArrowBackSharp } from "react-icons/io5";
 
 const OrderForm = ({ webhookUrl }) => {
   const { cart, getTotalCost, clearCart } = useCart();
@@ -75,6 +76,14 @@ const OrderForm = ({ webhookUrl }) => {
         <h2 className="text-3xl font-bold text-center mb-6 text-[#C29740] ">
           Place Your Order
         </h2>
+        <div className="w-[100%] mx-auto mb-4 flex justify-end gap-3">
+          <button
+            onClick={() => navigate(-1)}
+            className=" bg-yellow-500 text-black p-2 px-4 rounded-sm flex items-center gap-2 cursor-pointer"
+          >
+            <IoArrowBackSharp />
+          </button>
+        </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="label text-white">Name</label>
