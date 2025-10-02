@@ -85,11 +85,11 @@ const CartPage = () => {
                 </p>
               </div>
               <div className="flex gap-3.5 justify-end mt-4">
-                <button className="btn btn-sm btn-warning" onClick={clearCart}>
+                <button className="btn btn-sm btn-warning text-black" onClick={clearCart}>
                   Clear Cart
                 </button>
                 <button
-                  className="btn btn-sm btn-warning"
+                  className="btn btn-sm btn-warning text-black"
                   onClick={() => navigate("/order")}
                 >
                   Proceed to Purchase

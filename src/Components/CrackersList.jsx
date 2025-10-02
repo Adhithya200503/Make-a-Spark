@@ -286,7 +286,7 @@ const CrakersList = () => {
                       </td>
                       <td>
                         <button
-                          className="btn btn-sm btn-primary hidden sm:block"
+                          className="btn bg-[#F0B100] border-none text-black btn-primary hidden sm:block"
                           onClick={() => handleAddToCart(item)}
                         >
                           Add to Cart
