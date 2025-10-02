@@ -308,6 +308,8 @@ const firecrackerData = {
       rate_per_unit: 850.0,
       quantity: "1 BOX",
       amount: 850.0,
+      itemsUrl:
+        "https://res.cloudinary.com/datvfcnme/image/upload/v1759422995/box2_h3oxtd.jpg",
     },
     {
       variety: "40 items Box",
@@ -315,6 +317,8 @@ const firecrackerData = {
       rate_per_unit: 1200.0,
       quantity: "1 BOX",
       amount: 1200.0,
+      itemsUrl:
+        "https://res.cloudinary.com/datvfcnme/image/upload/v1759422994/box1_lyjs4q.jpg",
     },
     {
       variety: "50 items Box",
@@ -322,6 +326,8 @@ const firecrackerData = {
       rate_per_unit: 1350.0,
       quantity: "1 BOX",
       amount: 1350.0,
+      itemsUrl:
+        "https://res.cloudinary.com/datvfcnme/image/upload/v1759422995/box3_jzxwp2.jpg",
     },
   ],
   garlands: [

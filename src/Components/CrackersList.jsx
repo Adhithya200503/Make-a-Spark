@@ -248,9 +248,26 @@ const CrakersList = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {sortedList.map((item, itemIndex) => (
-                    <tr key={itemIndex}>
-                      <td className="font-semibold">{item.variety}</td>
+                  {sortedList.map((item) => (
+                    <tr key={item.id || item.variety}>
+                      <td
+                        className={`${
+                          crackersCategory == "gift_boxes"
+                            ? "flex flex-col items-start"
+                            : ""
+                        }`}
+                      >
+                        <span className="font-semibold">{item.variety}</span>
+                        {crackersCategory === "gift_boxes" && item.itemsUrl && (
+                          <a
+                            href={item.itemsUrl}
+                            target="_blank"
+                            className="ml-2 text-blue-500 underline"
+                          >
+                            items in the Box
+                          </a>
+                        )}
+                      </td>
                       <td>{item.contents}</td>
                       <td>₹{item.rate_per_unit.toFixed(2)}</td>
                       <td>
@@ -259,7 +276,10 @@ const CrakersList = () => {
                           min="0"
                           value={quantities[item.variety] || ""}
                           onChange={(e) =>
-                            handleQuantityChange(item.variety, e.target.value)
+                            handleQuantityChange(
+                              item.variety,
+                              Number(e.target.value)
+                            )
                           }
                           className="input input-bordered w-20 bg-white text-black"
                         />
@@ -272,7 +292,7 @@ const CrakersList = () => {
                           Add to Cart
                         </button>
                         <button
-                          className=" bg-yellow-500 text-black p-2 px-4 rounded-sm flex items-center gap-2 sm:hidden cursor-pointer"
+                          className="bg-yellow-500 text-black p-2 px-4 rounded-sm flex items-center gap-2 sm:hidden cursor-pointer"
                           onClick={() => handleAddToCart(item)}
                         >
                           <CiShoppingCart />
