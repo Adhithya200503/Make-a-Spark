@@ -19,10 +19,20 @@ import doubleColoring from "../assets/double_ball_coloring_crackers.png";
 import matches from "../assets/matches.png";
 import three from "../assets/three.png";
 import pipe from "../assets/pipe.png";
+import giftBox from "../assets/giftbox.png";
+import garland from "../assets/garland.png";
 import planetCrackers from "../assets/planetCrackers.png";
 const CrakersCategory = () => {
   const navigate = useNavigate();
   const crackersCategory = [
+    {
+      name: "gift_boxes",
+      image: giftBox,
+    },
+    {
+      name: "garlands",
+      image: garland,
+    },
     {
       name: "sparklers",
       image: sparkles,
